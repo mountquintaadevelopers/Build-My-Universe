@@ -3,9 +3,12 @@ export type LandingHeroStar = {
   top: string;
 };
 
-export type LandingHeroWindow = {
-  points: string;
-  delay: string;
+export type LandingHeroPoint = [number, number];
+
+export type LandingHeroBoxFlap = {
+  name: string;
+  hinge: [LandingHeroPoint, LandingHeroPoint];
+  fill: string;
 };
 
 export type LandingHeroContent = {
@@ -18,7 +21,9 @@ export type LandingHeroContent = {
   ribbonGreenText: string;
   ribbonWhiteText: string;
   stars: LandingHeroStar[];
-  buildingWindows: LandingHeroWindow[];
+  buildingWindows: string[];
+  whiteBoxCenter: LandingHeroPoint;
+  whiteBoxFlaps: LandingHeroBoxFlap[];
 };
 
 export type LandingFormValues = {

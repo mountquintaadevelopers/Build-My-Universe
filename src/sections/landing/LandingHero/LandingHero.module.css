@@ -169,7 +169,6 @@
   --parallax-depth: -10px;
   --float-distance: -6px;
   --float-duration: 8s;
-  --rise-delay: 0.3s;
 
   left: 5.6%;
   top: 28%;
@@ -180,7 +179,6 @@
   --parallax-depth: 16px;
   --float-distance: -14px;
   --float-duration: 7s;
-  --rise-delay: 0.5s;
 
   right: 6%;
   top: 11%;
@@ -191,7 +189,6 @@
   --parallax-depth: 26px;
   --float-distance: 12px;
   --float-duration: 6s;
-  --rise-delay: 0.65s;
 
   right: 14%;
   top: 39%;
@@ -199,35 +196,49 @@
 }
 
 .shapeMotion {
-  position: relative;
-  animation:
-    shapeRise 0.9s var(--hero-ease) var(--rise-delay) backwards,
-    shapeFloat var(--float-duration) ease-in-out 1.4s infinite;
+  animation: shapeFloat var(--float-duration) ease-in-out 1.4s infinite;
 }
 
-.shapeImage {
+.shapeSvg {
+  display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
 }
 
-.buildingWindows,
-.buildingCube {
+/* The flying block and its trail */
+.sceneBlock,
+.sceneTrail {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.buildingWindow {
-  fill: #e9f7a6;
+  top: 0;
+  left: 0;
+  width: clamp(24px, 2.4vw, 38px);
   opacity: 0;
-  animation: windowLight 10s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.buildingCube {
-  animation:
-    cubeDrop 0.9s cubic-bezier(0.3, 1.35, 0.5, 1) 0.9s backwards,
-    cubeLift 8s ease-in-out 3.5s infinite;
+.sceneBlock {
+  filter: drop-shadow(0 0 10px rgb(233 247 166 / 70%));
+}
+
+.sceneBlock svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sceneTrail {
+  height: clamp(24px, 2.4vw, 38px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(233 247 166 / 70%), transparent 68%);
+}
+
+/* The scene reveals the shapes once its opening positions are set. */
+@media (prefers-reduced-motion: no-preference) {
+  .shapes {
+    opacity: 0;
+  }
 }
 
 /* Ribbons */
@@ -462,13 +473,6 @@
   }
 }
 
-@keyframes shapeRise {
-  from {
-    opacity: 0;
-    scale: 0.85;
-  }
-}
-
 @keyframes shapeFloat {
   0%,
   100% {
@@ -477,38 +481,6 @@
 
   50% {
     translate: 0 var(--float-distance);
-  }
-}
-
-@keyframes cubeDrop {
-  from {
-    opacity: 0;
-    translate: 0 -70%;
-  }
-}
-
-@keyframes cubeLift {
-  0%,
-  70%,
-  100% {
-    translate: 0 0;
-  }
-
-  82% {
-    translate: 0 -9%;
-  }
-}
-
-@keyframes windowLight {
-  0%,
-  58%,
-  100% {
-    opacity: 0;
-  }
-
-  6%,
-  50% {
-    opacity: 0.95;
   }
 }
 

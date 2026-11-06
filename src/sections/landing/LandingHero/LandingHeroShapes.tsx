@@ -1,74 +1,50 @@
 'use client';
 
-import Image from 'next/image';
-import { landingHeroContent } from '@/data/landing/landingHero';
 import { useLandingHeroParallax } from '@/hooks/useLandingHeroParallax';
+import { useLandingHeroScene } from '@/hooks/useLandingHeroScene';
+import LandingHeroBuilding from './LandingHeroBuilding';
+import LandingHeroGreenCrate from './LandingHeroGreenCrate';
+import LandingHeroWhiteBox from './LandingHeroWhiteBox';
 import styles from './LandingHero.module.css';
+
+const trailCount = 3;
 
 export default function LandingHeroShapes() {
   const shapesRef = useLandingHeroParallax<HTMLDivElement>();
+  useLandingHeroScene(shapesRef);
 
   return (
     <div className={styles.shapes} ref={shapesRef} aria-hidden="true">
       <div className={styles.building}>
         <div className={styles.shapeMotion}>
-          <Image
-            className={styles.shapeImage}
-            src="/images/landing/landingHeroBuildingBase.webp"
-            alt=""
-            width={976}
-            height={1216}
-            sizes="(max-width: 768px) 24vw, 14vw"
-            loading="eager"
-          />
-          <svg className={styles.buildingWindows} viewBox="0 0 244 304">
-            {landingHeroContent.buildingWindows.map((window) => (
-              <polygon
-                className={styles.buildingWindow}
-                key={window.points}
-                points={window.points}
-                style={{ animationDelay: window.delay }}
-              />
-            ))}
-          </svg>
-          <Image
-            className={styles.buildingCube}
-            src="/images/landing/landingHeroBuildingCube.webp"
-            alt=""
-            width={976}
-            height={1216}
-            sizes="(max-width: 768px) 24vw, 14vw"
-            loading="eager"
-          />
+          <LandingHeroBuilding />
         </div>
       </div>
 
       <div className={styles.greenCube}>
         <div className={styles.shapeMotion}>
-          <Image
-            className={styles.shapeImage}
-            src="/images/landing/landingHeroGreenCube.webp"
-            alt=""
-            width={792}
-            height={864}
-            sizes="(max-width: 768px) 12vw, 8vw"
-            loading="eager"
-          />
+          <LandingHeroGreenCrate />
         </div>
       </div>
 
       <div className={styles.whiteCube}>
         <div className={styles.shapeMotion}>
-          <Image
-            className={styles.shapeImage}
-            src="/images/landing/landingHeroWhiteCube.webp"
-            alt=""
-            width={784}
-            height={864}
-            sizes="(max-width: 768px) 18vw, 11vw"
-            loading="eager"
-          />
+          <LandingHeroWhiteBox />
         </div>
+      </div>
+
+      {Array.from({ length: trailCount }, (_, index) => (
+        <span className={styles.sceneTrail} data-scene="trail" key={index} />
+      ))}
+
+      <div className={styles.sceneBlock} data-scene="block">
+        <svg viewBox="0 0 60 66">
+          <g data-scene="block-spin">
+            <polygon fill="#aed45a" points="0,16 30,33 30,66 0,49" />
+            <polygon fill="#8bb72c" points="30,33 60,16 60,49 30,66" />
+            <polygon fill="#e9f7a6" points="30,0 60,16 30,33 0,16" />
+          </g>
+        </svg>
       </div>
     </div>
   );
