@@ -16,8 +16,8 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Build My Universe',
-    template: '%s | Build My Universe',
+    default: 'Build My Universee',
+    template: '%s | Build My Universee',
   },
   description:
     'A new way to buy, rent and sell homes, plots and commercial spaces. Launching soon in Bengaluru.',

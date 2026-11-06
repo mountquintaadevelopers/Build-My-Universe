@@ -22,14 +22,14 @@ export const landingHeroContent: LandingHeroContent = {
   plotDepthLabel: '40 FT',
   compassLabel: 'N',
   titleRows: [
-    { label: 'Project', value: 'Build My Universe' },
+    { label: 'Project', value: 'Build My Universee' },
     { label: 'Location', value: 'Bengaluru, KA' },
     { label: 'Status', value: 'Coming soon', isAccent: true },
     { label: 'Sheet', value: '01 · Scale 1:100' },
   ],
   tickerItems: [
     { text: 'Coming soon', isAccent: true },
-    { text: 'Build My Universe' },
+    { text: 'Build My Universee' },
     { text: 'Buy · Rent · Sell' },
     { text: 'Bengaluru' },
   ],
