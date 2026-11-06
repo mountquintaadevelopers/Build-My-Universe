@@ -1,29 +1,33 @@
-export type LandingHeroStar = {
-  left: string;
-  top: string;
+export type LandingHeroCalloutZone = 'homes' | 'plots' | 'commercial';
+
+export type LandingHeroTitleRow = {
+  label: string;
+  value: string;
+  isAccent?: boolean;
 };
 
-export type LandingHeroPoint = [number, number];
-
-export type LandingHeroBoxFlap = {
-  name: string;
-  hinge: [LandingHeroPoint, LandingHeroPoint];
-  fill: string;
+export type LandingHeroTickerItem = {
+  text: string;
+  isAccent?: boolean;
 };
 
 export type LandingHeroContent = {
   badge: string;
   headingStart: string;
   headingAccent: string;
+  rulerLabel: string;
   description: string;
   ctaLabel: string;
   ctaHref: string;
-  ribbonGreenText: string;
-  ribbonWhiteText: string;
-  stars: LandingHeroStar[];
-  buildingWindows: string[];
-  whiteBoxCenter: LandingHeroPoint;
-  whiteBoxFlaps: LandingHeroBoxFlap[];
+  services: string;
+  callouts: Record<LandingHeroCalloutZone, string>;
+  floorsLabel: string;
+  plotLabel: string;
+  plotWidthLabel: string;
+  plotDepthLabel: string;
+  compassLabel: string;
+  titleRows: LandingHeroTitleRow[];
+  tickerItems: LandingHeroTickerItem[];
 };
 
 export type LandingFormValues = {

@@ -8,6 +8,30 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+.navbarLanding {
+  position: relative;
+  background: var(--color-blueprint-background);
+  border-bottom: 1px dashed var(--color-blueprint-line-dim);
+}
+
+.sheetLabel {
+  position: absolute;
+  left: 50%;
+  color: var(--color-text-muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .sheetLabel {
+    display: none;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
