@@ -1,0 +1,64 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--navbar-height);
+  padding: 0 var(--page-gutter);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-small);
+  background: var(--color-green);
+  color: var(--color-text-dark);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brandName {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brandTagline {
+  color: var(--color-text-muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.blogsLink {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 20px;
+  border: 1.5px solid var(--color-green);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.blogsLink:hover {
+  background: var(--color-green);
+  color: var(--color-text-dark);
+}

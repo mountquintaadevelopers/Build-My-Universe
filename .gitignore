@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local secrets
+.env
+.env.local
+.env.*.local
+
+# Saved task versions
+.versions/
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db

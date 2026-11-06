@@ -1,0 +1,32 @@
+:root {
+  /* Colors */
+  --color-background: #1c1c1c;
+  --color-surface: #333333;
+  --color-border: #272727;
+  --color-card: #262626;
+  --color-card-border: #2e2e2e;
+  --color-placeholder: #8a8a8a;
+  --color-error: #ff9b85;
+  --color-green: #8bb72c;
+  --color-green-light: #b3d076;
+  --color-white: #ffffff;
+  --color-text-muted: #d6d6d6;
+  --color-text-dark: #1c1c1c;
+
+  /* Layout */
+  --navbar-height: 72px;
+  --page-gutter: 32px;
+  --content-width: 1120px;
+
+  /* Corners */
+  --radius-small: 8px;
+  --radius-medium: 16px;
+  --radius-pill: 999px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 64px;
+    --page-gutter: 16px;
+  }
+}

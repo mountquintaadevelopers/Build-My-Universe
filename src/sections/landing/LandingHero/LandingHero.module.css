@@ -1,0 +1,548 @@
+.hero {
+  --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100svh - var(--navbar-height));
+  padding: 48px var(--page-gutter) 150px;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--color-white);
+  animation: starTwinkle 4s ease-in-out infinite;
+}
+
+.shootingStar {
+  position: absolute;
+  top: 12%;
+  left: 16%;
+  width: 90px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, transparent, var(--color-white));
+  opacity: 0;
+  rotate: 18deg;
+  animation: shootingStar 11s ease-out 3s infinite;
+}
+
+/* Text */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 720px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 7px 36px 7px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  animation: contentRise 0.7s var(--hero-ease) 0.1s backwards;
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-green);
+  animation: dotPulse 2.4s ease-out infinite;
+}
+
+/* The background keeps stars from showing through the text. */
+.heading,
+.description {
+  background: var(--color-background);
+}
+
+.heading {
+  margin-top: 16px;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  animation: contentRise 0.8s var(--hero-ease) 0.25s backwards;
+}
+
+.headingAccent {
+  background-image: linear-gradient(
+    105deg,
+    var(--color-green) 40%,
+    #dcf09a 50%,
+    var(--color-green) 60%
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: accentSheen 7s ease-in-out 1.6s infinite;
+}
+
+.description {
+  margin-top: 14px;
+  color: var(--color-text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+  animation: contentRise 0.8s var(--hero-ease) 0.4s backwards;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  margin-top: 24px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-green);
+  color: var(--color-text-dark);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    translate 0.2s ease,
+    box-shadow 0.2s ease;
+  animation: contentRise 0.8s var(--hero-ease) 0.55s backwards;
+}
+
+.ctaArrow {
+  width: 17px;
+  height: 17px;
+  transition: translate 0.2s ease;
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    box-shadow: 0 8px 28px rgb(139 183 44 / 35%);
+    translate: 0 -2px;
+  }
+
+  .cta:hover .ctaArrow {
+    translate: 4px 0;
+  }
+}
+
+/* 3D shapes */
+.shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.building,
+.greenCube,
+.whiteCube {
+  position: absolute;
+  transform: translate3d(
+    calc(var(--parallax-x, 0) * var(--parallax-depth)),
+    calc(var(--parallax-y, 0) * var(--parallax-depth)),
+    0
+  );
+  transition: transform 0.5s ease-out;
+}
+
+.building {
+  --parallax-depth: -10px;
+  --float-distance: -6px;
+  --float-duration: 8s;
+  --rise-delay: 0.3s;
+
+  left: 5.6%;
+  top: 28%;
+  width: clamp(120px, 11.6vw, 190px);
+}
+
+.whiteCube {
+  --parallax-depth: 16px;
+  --float-distance: -14px;
+  --float-duration: 7s;
+  --rise-delay: 0.5s;
+
+  right: 6%;
+  top: 11%;
+  width: clamp(96px, 9.3vw, 150px);
+}
+
+.greenCube {
+  --parallax-depth: 26px;
+  --float-distance: 12px;
+  --float-duration: 6s;
+  --rise-delay: 0.65s;
+
+  right: 14%;
+  top: 39%;
+  width: clamp(66px, 6.3vw, 104px);
+}
+
+.shapeMotion {
+  position: relative;
+  animation:
+    shapeRise 0.9s var(--hero-ease) var(--rise-delay) backwards,
+    shapeFloat var(--float-duration) ease-in-out 1.4s infinite;
+}
+
+.shapeImage {
+  width: 100%;
+  height: auto;
+}
+
+.buildingWindows,
+.buildingCube {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.buildingWindow {
+  fill: #e9f7a6;
+  opacity: 0;
+  animation: windowLight 10s ease-in-out infinite;
+}
+
+.buildingCube {
+  animation:
+    cubeDrop 0.9s cubic-bezier(0.3, 1.35, 0.5, 1) 0.9s backwards,
+    cubeLift 8s ease-in-out 3.5s infinite;
+}
+
+/* Ribbons */
+.ribbons {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  height: 130px;
+}
+
+.ribbon {
+  position: absolute;
+  left: -5%;
+  display: flex;
+  align-items: center;
+  width: 110%;
+  height: 28px;
+  overflow: hidden;
+  color: var(--color-text-dark);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ribbonGreen {
+  top: 42px;
+  background: var(--color-green);
+  transform: rotate(-3.3deg);
+  animation: ribbonRevealFromLeft 1.2s var(--hero-ease) 0.5s backwards;
+}
+
+.ribbonWhite {
+  top: 72px;
+  background: var(--color-white);
+  transform: rotate(2.7deg);
+  animation: ribbonRevealFromRight 1.2s var(--hero-ease) 0.5s backwards;
+}
+
+.ribbonTrack {
+  display: flex;
+  flex: none;
+  width: max-content;
+  animation: ribbonRun 90s linear infinite;
+  will-change: transform;
+}
+
+.ribbonWhite .ribbonTrack {
+  animation-direction: reverse;
+}
+
+.ribbonItem {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 50px;
+  padding-right: 50px;
+}
+
+.ribbonDiamond {
+  width: 6px;
+  height: 6px;
+  background: var(--color-text-dark);
+  transform: rotate(45deg);
+}
+
+.ribbonWhite .ribbonDiamond {
+  background: var(--color-green);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    padding: 24px var(--page-gutter) 0;
+  }
+
+  .content {
+    width: 100%;
+    margin-block: auto;
+  }
+
+  .badge {
+    gap: 20px;
+    padding: 6px 28px 6px 12px;
+    font-size: 10px;
+  }
+
+  .heading {
+    margin-top: 12px;
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
+    line-height: 1.12;
+  }
+
+  .heading span {
+    display: block;
+  }
+
+  .description {
+    max-width: 240px;
+    font-size: 13.5px;
+  }
+
+  .cta {
+    justify-content: center;
+    width: 100%;
+    max-width: 188px;
+    height: 42px;
+    margin-top: 20px;
+    background: linear-gradient(
+      90deg,
+      var(--color-green-light) 27%,
+      var(--color-green) 27%
+    );
+    font-size: 14px;
+  }
+
+  .shapes {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: 100%;
+    height: 200px;
+  }
+
+  .building {
+    bottom: 76px;
+    left: 6%;
+    top: auto;
+    width: 22%;
+  }
+
+  .greenCube {
+    right: 27%;
+    bottom: 96px;
+    top: auto;
+    width: 11%;
+  }
+
+  .whiteCube {
+    right: 8%;
+    bottom: 110px;
+    top: auto;
+    width: 16%;
+  }
+
+  .ribbons {
+    height: 110px;
+  }
+
+  .ribbon {
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .ribbonGreen {
+    top: 30px;
+    transform: rotate(-4.5deg);
+  }
+
+  .ribbonWhite {
+    top: 60px;
+    transform: rotate(3deg);
+  }
+
+  .ribbonItem {
+    gap: 28px;
+    padding-right: 28px;
+  }
+}
+
+/* Animations */
+@keyframes contentRise {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
+}
+
+@keyframes accentSheen {
+  0% {
+    background-position: 100% 0;
+  }
+
+  30%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(139 183 44 / 60%);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px rgb(139 183 44 / 0%);
+  }
+}
+
+@keyframes starTwinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    translate: 0 0;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  9% {
+    opacity: 0;
+    translate: 380px 123px;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 380px 123px;
+  }
+}
+
+@keyframes shapeRise {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+}
+
+@keyframes shapeFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 var(--float-distance);
+  }
+}
+
+@keyframes cubeDrop {
+  from {
+    opacity: 0;
+    translate: 0 -70%;
+  }
+}
+
+@keyframes cubeLift {
+  0%,
+  70%,
+  100% {
+    translate: 0 0;
+  }
+
+  82% {
+    translate: 0 -9%;
+  }
+}
+
+@keyframes windowLight {
+  0%,
+  58%,
+  100% {
+    opacity: 0;
+  }
+
+  6%,
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes ribbonRevealFromLeft {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes ribbonRevealFromRight {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes ribbonRun {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .hero *::before,
+  .hero *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
